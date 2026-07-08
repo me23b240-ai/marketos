@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,10 +13,16 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
+        transition={{
+          duration: 0.5,
+          ease: [0.21, 0.47, 0.32, 0.98],
+        }}
         className="flex flex-col items-center"
       >
-        <Badge variant="outline" className="mb-6 px-3 py-1 text-xs font-normal">
+        <Badge
+          variant="outline"
+          className="mb-6 px-3 py-1 text-xs font-normal"
+        >
           The Intelligence Platform for Indian Consumer Internet
         </Badge>
 
@@ -29,10 +36,13 @@ export function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <Button size="lg" className="h-10 px-5">
-            Explore Companies
-            <ArrowRight className="ml-1" />
-          </Button>
+          <Link href="/dashboard">
+            <Button size="lg" className="h-10 px-5">
+              Explore Companies
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+
           <Button variant="outline" size="lg" className="h-10 px-5">
             View Demo
           </Button>

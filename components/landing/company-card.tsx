@@ -1,4 +1,5 @@
 import { TrendingDown, TrendingUp } from "lucide-react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -19,6 +20,7 @@ export function CompanyCard({ company }: CompanyCardProps) {
   const isUp = company.trendDirection === "up";
 
   return (
+    <Link href={`/company/${company.name.toLowerCase()}`}>
     <Card
       className={cn(
         "cursor-pointer py-5 transition-all duration-200",
@@ -56,5 +58,6 @@ export function CompanyCard({ company }: CompanyCardProps) {
         </p>
       </CardContent>
     </Card>
+    </Link>
   );
 }
