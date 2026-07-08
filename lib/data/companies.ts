@@ -1,6 +1,7 @@
 export type TrendDirection = "up" | "down";
 
 export interface Company {
+  slug: string;
   name: string;
   industry: string;
   metric: string;
@@ -10,6 +11,7 @@ export interface Company {
 
 export const companies: Company[] = [
   {
+    slug: "meesho",
     name: "Meesho",
     industry: "Social Commerce",
     metric: "₹6,000 Cr GMV",
@@ -17,6 +19,7 @@ export const companies: Company[] = [
     trendDirection: "up",
   },
   {
+    slug: "flipkart",
     name: "Flipkart",
     industry: "E-commerce",
     metric: "150M+ MAU",
@@ -24,6 +27,7 @@ export const companies: Company[] = [
     trendDirection: "up",
   },
   {
+    slug: "blinkit",
     name: "Blinkit",
     industry: "Quick Commerce",
     metric: "10 min avg. delivery",
@@ -31,6 +35,7 @@ export const companies: Company[] = [
     trendDirection: "up",
   },
   {
+    slug: "zepto",
     name: "Zepto",
     industry: "Quick Commerce",
     metric: "₹2,500 Cr ARR",
@@ -38,6 +43,7 @@ export const companies: Company[] = [
     trendDirection: "up",
   },
   {
+    slug: "swiggy",
     name: "Swiggy",
     industry: "Food Delivery",
     metric: "₹12,000 Cr GMV",
@@ -45,6 +51,7 @@ export const companies: Company[] = [
     trendDirection: "down",
   },
   {
+    slug: "phonepe",
     name: "PhonePe",
     industry: "Fintech",
     metric: "500M+ registered users",
