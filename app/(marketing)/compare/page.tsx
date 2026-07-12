@@ -2,24 +2,16 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
+
 import { ComparisonTable } from "@/components/compare/comparison-table";
 import { ComparisonSummary } from "@/components/compare/comparison-summary";
 
-const COMPANIES = [
-  "Meesho",
-  "Flipkart",
-  "Blinkit",
-  "Zepto",
-  "Swiggy",
-  "PhonePe",
-  "Nykaa",
-  "MakeMyTrip",
-] as const;
+import { companies } from "@/lib/data/company-profile";
+const COMPANIES = companies.map((c) => c.name);
 
 export default function ComparePage() {
-  const [companyA, setCompanyA] = useState<string>("Meesho");
-  const [companyB, setCompanyB] = useState<string>("Flipkart");
+  const [companyA, setCompanyA] = useState<string>(companies[0].name);
+  const [companyB, setCompanyB] = useState<string>(companies[1].name);
 
   const [submitted, setSubmitted] = useState<{
     companyA: string;

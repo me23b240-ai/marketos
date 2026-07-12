@@ -34,8 +34,11 @@ export function CompanyCard({ company }: CompanyCardProps) {
               {company.name.charAt(0)}
             </div>
             <Badge
-              variant={isUp ? "secondary" : "destructive"}
-              className="gap-1 font-mono text-xs"
+              variant={isUp ? "outline" : "destructive"}
+              className={cn(
+                "gap-1 font-mono text-xs",
+                isUp && "border-green-200 bg-green-50 text-green-700"
+              )}
             >
               {isUp ? (
                 <TrendingUp className="size-3" />

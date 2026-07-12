@@ -1,3 +1,4 @@
+// components/dashboard/dashboard-header.tsx
 import { Bell, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,9 +19,12 @@ export function DashboardHeader() {
   return (
     <header className="flex flex-col gap-4 border-b px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <p className="text-sm text-muted-foreground">Welcome back</p>
-        <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
-          Dashboard
+        <p className="text-sm text-muted-foreground">
+          Track companies, industries, funding, news and AI insights in one place.
+        </p>
+
+        <h1 className="text-3xl font-semibold">
+          Market Intelligence Dashboard
         </h1>
       </div>
 

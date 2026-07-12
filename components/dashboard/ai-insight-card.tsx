@@ -1,51 +1,64 @@
+// components/dashboard/ai-insight-card.tsx
+import { Suspense } from "react";
 import { Sparkles } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { aiInsightOfTheDay } from "@/lib/data/dashboard-preview";
+import { getDailyInsight } from "@/lib/dashboard/ai-daily-insight";
+
+async function AiInsightContent() {
+  const insight = await getDailyInsight();
+
+  if (!insight) {
+    return (
+      <p className="mt-4 text-[13px] text-muted-foreground">
+        Not enough data to generate an insight right now.
+      </p>
+    );
+  }
+
+  return (
+    <>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex size-7 items-center justify-center rounded-lg bg-foreground text-background">
+            <Sparkles className="size-3.5" />
+          </div>
+          <h3 className="text-[14px] font-semibold text-foreground">
+            AI Insight of the Day
+          </h3>
+        </div>
+        <span className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+          {insight.confidence} confidence
+        </span>
+      </div>
+
+      <p className="mt-4 text-[14px] leading-relaxed text-foreground">
+        &ldquo;{insight.text}&rdquo;
+      </p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {insight.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full bg-muted px-2.5 py-1 text-[11.5px] text-muted-foreground"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function AiInsightSkeleton() {
+  return <div className="h-32 animate-pulse rounded-xl bg-muted/30" />;
+}
 
 export function AiInsightCard() {
   return (
-    <Card
-      size="sm"
-      className="relative overflow-hidden border-foreground/15 bg-muted/20 py-4"
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-foreground/20" />
-
-      <CardHeader className="gap-3 pb-2">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <div className="flex size-7 items-center justify-center rounded-md bg-foreground text-background">
-              <Sparkles className="size-3.5" />
-            </div>
-            <CardTitle className="text-sm font-medium">
-              AI Insight of the Day
-            </CardTitle>
-          </div>
-          <Badge variant="outline" className="text-xs font-normal">
-            {aiInsightOfTheDay.confidence}
-          </Badge>
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-4 pt-0">
-        <blockquote className="border-l-2 border-foreground/20 pl-4 text-sm leading-relaxed text-foreground/90">
-          &ldquo;{aiInsightOfTheDay.text}&rdquo;
-        </blockquote>
-
-        <div className="flex flex-wrap gap-1.5">
-          {aiInsightOfTheDay.tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="text-xs font-normal">
-              {tag}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="rounded-2xl border bg-white p-6">
+      <Suspense fallback={<AiInsightSkeleton />}>
+        <AiInsightContent />
+      </Suspense>
+    </div>
   );
 }

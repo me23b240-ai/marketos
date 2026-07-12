@@ -1,11 +1,11 @@
-"use client";
-
 import Link from "next/link";
 import {
   Building2,
   GitCompare,
   Layers,
   LayoutDashboard,
+  FileText,
+  Sparkles,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -16,14 +16,9 @@ const iconMap = {
   "building-2": Building2,
   layers: Layers,
   "git-compare": GitCompare,
+  "file-text": FileText,
+  sparkles: Sparkles,
 } as const;
-
-const hrefMap: Record<string, string> = {
-  Dashboard: "/dashboard",
-  Companies: "/companies",
-  Industries: "/industries",
-  Compare: "/compare",
-};
 
 interface DashboardSidebarProps {
   className?: string;
@@ -37,38 +32,38 @@ export function DashboardSidebar({
   return (
     <aside
       className={cn(
-        "hidden w-14 shrink-0 flex-col border-r bg-muted/30 sm:flex",
+        "hidden w-64 shrink-0 flex-col border-r bg-muted/30 sm:flex",
         className
       )}
     >
-      <div className="flex h-12 items-center justify-center border-b">
-        <Link href="/">
-          <div className="flex size-7 cursor-pointer items-center justify-center rounded-md bg-foreground text-xs font-semibold text-background">
+      <div className="flex h-12 items-center gap-2 border-b px-4">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="flex size-7 items-center justify-center rounded-md bg-foreground text-xs font-semibold text-background">
             M
           </div>
+          <span className="text-sm font-semibold text-foreground">
+            MarketOS
+          </span>
         </Link>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-1 p-2">
+      <nav className="flex flex-1 flex-col gap-1 p-3">
         {dashboardNavItems.map((item) => {
-          const Icon = iconMap[item.icon];
+          const Icon = iconMap[item.icon as keyof typeof iconMap];
           const isActive = item.label === activeItem;
 
           return (
-            <Link
-              key={item.label}
-              href={hrefMap[item.label] || "#"}
-              aria-label={item.label}
-            >
+            <Link key={item.label} href={item.href} aria-label={item.label}>
               <div
                 className={cn(
-                  "flex size-10 cursor-pointer items-center justify-center rounded-lg transition-colors",
+                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
                   isActive
                     ? "bg-foreground text-background"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
-                <Icon className="size-4" />
+                <Icon className="size-4 shrink-0" />
+                <span className="truncate">{item.label}</span>
               </div>
             </Link>
           );

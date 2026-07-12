@@ -43,9 +43,6 @@ export function Hero() {
             </Button>
           </Link>
 
-          <Button variant="outline" size="lg" className="h-10 px-5">
-            View Demo
-          </Button>
         </div>
       </motion.div>
     </section>

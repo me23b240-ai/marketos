@@ -1,25 +1,17 @@
-"use client";
-
-import { motion } from "framer-motion";
-
+// components/landing/product-preview.tsx
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 import { MarketPulseChart } from "@/components/dashboard/market-pulse-chart";
 import { TrendingCompaniesTable } from "@/components/dashboard/trending-companies-table";
+import { FadeInOnScroll } from "@/components/landing/fade-in-on-scroll";
 import { MetricCard } from "@/components/ui/metric-card";
 import { Separator } from "@/components/ui/separator";
-import { dashboardMetrics } from "@/lib/data/dashboard-preview";
+import { dashboardNavItems } from "@/lib/data/dashboard-preview";
 
 export function ProductPreview() {
   return (
     <section className="border-t bg-muted/20">
       <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="mx-auto max-w-2xl text-center"
-        >
+        <FadeInOnScroll className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Product Preview
           </p>
@@ -30,17 +22,11 @@ export function ProductPreview() {
             Monitor metrics, track market pulse, and surface trending companies
             — all in one workspace.
           </p>
-        </motion.div>
+        </FadeInOnScroll>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{
-            duration: 0.6,
-            delay: 0.1,
-            ease: [0.21, 0.47, 0.32, 0.98],
-          }}
+        <FadeInOnScroll
+          delay={0.1}
+          y={24}
           className="mt-12 overflow-hidden rounded-2xl border bg-card shadow-2xl shadow-black/5 ring-1 ring-foreground/10"
         >
           <div className="flex min-h-[520px]">
@@ -53,7 +39,7 @@ export function ProductPreview() {
 
               <div className="flex flex-1 flex-col gap-4 p-4 sm:gap-6 sm:p-6">
                 <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-                  {dashboardMetrics.map((metric) => (
+                  {previewMetrics.map((metric) => (
                     <MetricCard
                       key={metric.label}
                       label={metric.label}
@@ -71,8 +57,31 @@ export function ProductPreview() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </FadeInOnScroll>
       </div>
     </section>
   );
 }
+
+const previewMetrics = [
+  {
+    label: "Tracked Companies",
+    value: "120+",
+    change: "+18 this month",
+  },
+  {
+    label: "Industries",
+    value: "18",
+    change: "Growing",
+  },
+  {
+    label: "Market Signals",
+    value: "350+",
+    change: "Updated Daily",
+  },
+  {
+    label: "AI Reports",
+    value: "Unlimited",
+    change: "Gemini Powered",
+  },
+];

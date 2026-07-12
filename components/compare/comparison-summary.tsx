@@ -24,95 +24,14 @@ interface SummaryProfile {
   weaknesses: string[];
 }
 
-const SUMMARY_DATA: Record<string, SummaryProfile> = {
-  Meesho: {
-    strengths: [
-      "Low customer acquisition cost via social selling",
-      "Strong penetration in non-metro India",
-    ],
-    weaknesses: [
-      "Thin margins, limited premium positioning",
-      "Heavy reliance on discount-driven demand",
-    ],
-  },
-  Flipkart: {
-    strengths: [
-      "Extensive logistics and warehousing network",
-      "Strong brand trust and category breadth",
-    ],
-    weaknesses: [
-      "High fixed costs from owned logistics",
-      "Slower agility against low-cost challengers",
-    ],
-  },
-  Blinkit: {
-    strengths: [
-      "Category-leading dark store density in metros",
-      "Backing and cross-promotion from Eternal/Zomato",
-    ],
-    weaknesses: [
-      "Unproven profitability at current delivery speeds",
-      "High cash burn on dark store expansion",
-    ],
-  },
-  Zepto: {
-    strengths: [
-      "Fast-growing metro footprint",
-      "Strong recent funding momentum",
-    ],
-    weaknesses: [
-      "Smaller scale than Blinkit and Instamart",
-      "Limited category diversification so far",
-    ],
-  },
-  Swiggy: {
-    strengths: [
-      "Diversified revenue across food and quick commerce",
-      "Established brand and large user base",
-    ],
-    weaknesses: [
-      "Margin pressure from Instamart expansion",
-      "Intensifying competition in both core segments",
-    ],
-  },
-  PhonePe: {
-    strengths: [
-      "Dominant UPI transaction market share",
-      "Wide distribution for financial product cross-sell",
-    ],
-    weaknesses: [
-      "Thin margins on core payments business",
-      "Revenue diversification still maturing",
-    ],
-  },
-  Nykaa: {
-    strengths: [
-      "Strong owned-brand portfolio and margins",
-      "Established trust in beauty and premium segments",
-    ],
-    weaknesses: [
-      "Slower growth outside beauty categories",
-      "Rising competition from quick commerce beauty delivery",
-    ],
-  },
-  MakeMyTrip: {
-    strengths: [
-      "Category-leading brand in Indian online travel",
-      "Broad bundled travel service offerings",
-    ],
-    weaknesses: [
-      "Exposure to fuel price and seasonal demand volatility",
-      "Compressed take rates from price competition",
-    ],
-  },
-};
+import { companies } from "@/lib/data/company-profile";
 
 export function ComparisonSummary({
   companyA,
   companyB,
 }: ComparisonSummaryProps) {
-  const a = SUMMARY_DATA[companyA];
-  const b = SUMMARY_DATA[companyB];
+  const a = companies.find((c) => c.name === companyA);
+  const b = companies.find((c) => c.name === companyB);
 
   return (
     <Card className="border-border bg-card shadow-sm">
@@ -156,26 +75,15 @@ export function ComparisonSummary({
             <div className="flex items-center gap-1.5">
               <TrendingUp className="h-3.5 w-3.5 text-foreground" />
               <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                Strengths
+                Highlights
               </h3>
             </div>
-            <ul className="flex flex-col gap-1.5 text-sm text-foreground">
-              {a?.strengths.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-muted-foreground">•</span>
-                  <span>
-                    {companyA}: {item}
-                  </span>
-                </li>
-              ))}
-              {b?.strengths.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-muted-foreground">•</span>
-                  <span>
-                    {companyB}: {item}
-                  </span>
-                </li>
-              ))}
+
+            <ul className="flex flex-col gap-2 text-sm">
+              <li><strong>{companyA}</strong>: {a?.description}</li>
+              <li><strong>Growth:</strong> {a?.growth}</li>
+              <li><strong>{companyB}</strong>: {b?.description}</li>
+              <li><strong>Growth:</strong> {b?.growth}</li>
             </ul>
           </section>
 
@@ -184,26 +92,15 @@ export function ComparisonSummary({
             <div className="flex items-center gap-1.5">
               <TrendingDown className="h-3.5 w-3.5 text-foreground" />
               <h3 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                Weaknesses
+                Company Details
               </h3>
             </div>
-            <ul className="flex flex-col gap-1.5 text-sm text-foreground">
-              {a?.weaknesses.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-muted-foreground">•</span>
-                  <span>
-                    {companyA}: {item}
-                  </span>
-                </li>
-              ))}
-              {b?.weaknesses.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="text-muted-foreground">•</span>
-                  <span>
-                    {companyB}: {item}
-                  </span>
-                </li>
-              ))}
+
+            <ul className="flex flex-col gap-2 text-sm">
+              <li><strong>{companyA}</strong>: {a?.stage}</li>
+              <li><strong>HQ:</strong> {a?.hq}</li>
+              <li><strong>{companyB}</strong>: {b?.stage}</li>
+              <li><strong>HQ:</strong> {b?.hq}</li>
             </ul>
           </section>
         </div>

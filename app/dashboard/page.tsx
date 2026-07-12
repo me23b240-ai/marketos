@@ -1,11 +1,13 @@
+// app/dashboard/page.tsx
 import { AiInsightCard } from "@/components/dashboard/ai-insight-card";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
+import { FundingMetricCard } from "@/components/dashboard/funding-metric-card";
 import { MarketNews } from "@/components/dashboard/market-news";
 import { MarketPulseChart } from "@/components/dashboard/market-pulse-chart";
 import { TrendingCompaniesTable } from "@/components/dashboard/trending-companies-table";
 import { TrendingIndustries } from "@/components/dashboard/trending-industries";
 import { MetricCard } from "@/components/ui/metric-card";
-import { dashboardKpis } from "@/lib/data/dashboard-preview";
+import { stats } from "@/lib/dashboard/analytics";
 
 export default function DashboardPage() {
   return (
@@ -13,15 +15,16 @@ export default function DashboardPage() {
       <DashboardHeader />
 
       <div className="flex flex-1 flex-col gap-6 p-4 sm:gap-8 sm:p-6">
-        <section className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-          {dashboardKpis.map((kpi) => (
-            <MetricCard
-              key={kpi.label}
-              label={kpi.label}
-              value={kpi.value}
-              change={kpi.change}
-            />
-          ))}
+        <section className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+          <FundingMetricCard />
+          <MetricCard
+            label="Industries Covered"
+            value={stats.totalIndustries.toString()}
+          />
+          <MetricCard
+            label="Public Companies"
+            value={stats.publicCompanies.toString()}
+          />
         </section>
 
         <section className="grid gap-6 xl:grid-cols-3">
