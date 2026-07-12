@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Compare Companies | MarketOS",
+  title: "Compare Companies | Bazaar Intel",
   description: "Compare Indian consumer internet companies side by side.",
 };
 

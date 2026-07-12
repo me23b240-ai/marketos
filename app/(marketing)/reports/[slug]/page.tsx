@@ -32,11 +32,11 @@ export async function generateMetadata({
   const report = getReportBySlug(slug);
 
   if (!report) {
-    return { title: "Report Not Found | MarketOS" };
+    return { title: "Report Not Found | Bazaar Intel" };
   }
 
   return {
-    title: `${report.title} | MarketOS`,
+    title: `${report.title} | Bazaar Intel`,
     description: report.heroDescription,
   };
 }

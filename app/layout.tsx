@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MarketOS",
+  title: "Bazaar Intel",
   description: "Consumer Internet Intelligence Platform",
 };
 

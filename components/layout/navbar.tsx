@@ -17,11 +17,11 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-black text-white font-semibold">
-            M
+            B
           </div>
 
           <span className="text-xl font-semibold tracking-tight">
-            MarketOS
+            Bazaar Intel
           </span>
         </Link>
 

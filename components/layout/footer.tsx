@@ -36,7 +36,7 @@ export default function Footer() {
                 M
               </div>
               <span className="text-sm font-semibold text-foreground">
-                MarketOS
+                Bazaar Intel
               </span>
             </Link>
             <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
-          <p className="text-sm text-muted-foreground">© 2026 MarketOS</p>
+          <p className="text-sm text-muted-foreground">© 2026 Bazaar Intel</p>
           <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
             Made with
             <Heart className="size-3.5 fill-current text-foreground" />

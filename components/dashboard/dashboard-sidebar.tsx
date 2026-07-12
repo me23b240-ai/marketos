@@ -42,7 +42,7 @@ export function DashboardSidebar({
             M
           </div>
           <span className="text-sm font-semibold text-foreground">
-            MarketOS
+            Bazaar Intel
           </span>
         </Link>
       </div>

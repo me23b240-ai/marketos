@@ -206,6 +206,7 @@ export default function AiWorkspacePage() {
   };
 
   const hasResult = status === "idle" && !error && result.length > 0;
+  const hasGeneratedResult = result.length > 0 && !error;
   const hasError = status === "idle" && Boolean(error);
 
   return (
@@ -317,7 +318,7 @@ export default function AiWorkspacePage() {
         </Card>
       </motion.div>
 
-      {hasResult && (
+      {hasGeneratedResult && (
         <motion.div
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
@@ -328,6 +329,7 @@ export default function AiWorkspacePage() {
             variant="outline"
             size="sm"
             onClick={handleCopy}
+            disabled={status === "loading"}
             className="gap-1.5 border-border text-xs font-medium text-foreground hover:bg-muted"
           >
             {copied ? (
