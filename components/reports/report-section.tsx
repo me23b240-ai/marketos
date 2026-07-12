@@ -68,23 +68,19 @@ export function ReportSection({
 
       <CardFooter className="flex flex-col gap-2 border-t border-border p-0 pt-4 sm:flex-row">
         <Button
-          asChild
+          render={<Link href={onDownloadHref} />}
           variant="outline"
           className="w-full gap-1.5 border-border text-sm font-medium text-foreground hover:bg-muted sm:w-auto"
         >
-          <Link href={onDownloadHref}>
-            <Download className="h-3.5 w-3.5" />
-            Download PDF
-          </Link>
+          <Download className="h-3.5 w-3.5" />
+          Download PDF
         </Button>
         <Button
-          asChild
+          render={<Link href={onViewHref} />}
           className="w-full gap-1.5 bg-foreground text-sm font-medium text-background hover:bg-foreground/90 sm:w-auto"
         >
-          <Link href={onViewHref}>
-            View Report
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          View Report
+          <ArrowRight className="h-3.5 w-3.5" />
         </Button>
       </CardFooter>
     </Card>

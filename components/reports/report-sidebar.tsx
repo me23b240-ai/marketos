@@ -60,7 +60,7 @@ function SidebarSection({
           return (
             <Button
               key={item.href}
-              asChild
+              render={<Link href={item.href} />}
               variant={isActive ? "default" : "ghost"}
               className={
                 isActive
@@ -68,7 +68,7 @@ function SidebarSection({
                   : "h-auto w-full justify-start px-2 py-1.5 text-sm font-normal text-muted-foreground hover:bg-muted hover:text-foreground"
               }
             >
-              <Link href={item.href}>{item.label}</Link>
+              {item.label}
             </Button>
           );
         })}
