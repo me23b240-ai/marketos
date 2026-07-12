@@ -100,15 +100,13 @@ export function SearchResults() {
                   </div>
 
                   <Button
-                    asChild
+                    render={<Link href={item.href} />}
                     variant="outline"
                     size="sm"
                     className="mt-5 w-fit rounded-full"
                   >
-                    <Link href={item.href} className="flex items-center gap-1.5">
-                      Open
-                      <ArrowRight className="size-3.5" />
-                    </Link>
+                    Open
+                    <ArrowRight className="size-3.5" />
                   </Button>
                 </div>
               );
